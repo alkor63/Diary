@@ -19,7 +19,6 @@ public class Main {
         YearlyTask task8 = new YearlyTask("Task #8 yearly", Type.WORK, "чей-то день рождения");
 
 // вместо списка используем мапу
-        Map<Integer, Task> tasks = new HashMap<>();
         tasks.put(task1.getId(), task1);
         tasks.put(task2.getId(), task2);
         tasks.put(task3.getId(), task3);
@@ -37,25 +36,25 @@ public class Main {
                     int menu = scanner.nextInt();
                     switch (menu) {
                         case 1:
-                            inputTask(scanner, tasks);
+                            inputTask();
                             break;
                         case 2:
-                            removeId(tasks);
+                            removeId();
                             break;
                         case 3:
                             // todo: обрабатываем пункт меню 3 (Получить задачу на указанный день)
                             LocalDate date = inputDate();
                             System.out.println("Задачи на дату " + date);
-                            getAllByDate(tasks, date);
+                            getAllByDate(date);
                             break;
                         case 4:
                             getRemovedTasks();
                             break;
                         case 5:
-                            updateTitle(tasks);
+                            updateTitle();
                             break;
                         case 6:
-                            updateDescription(tasks);
+                            updateDescription();
                             break;
                         case 0:
                             break label;

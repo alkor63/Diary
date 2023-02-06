@@ -5,13 +5,14 @@ import java.util.*;
 
 public class TaskService {
     static Set<Task> archiveRemovedTaskSet = new HashSet<>();
+    public static Map<Integer, Task> tasks = new HashMap<>();
 
-    public static void inputTask(Scanner scanner, Map<Integer, Task> tasks) {
-//        Scanner scanner1 = new Scanner(System.in);
+    public static void inputTask() {
+        Scanner scanner1 = new Scanner(System.in);
         Scanner scanner2 = new Scanner(System.in);
 
         System.out.print("Введите название задачи: ");
-        String taskName = scanner.next();
+        String taskName = scanner1.nextLine();
         try {
             Task.checkTitle(taskName);
         } catch (IncorrectArgumentException e) {
@@ -19,7 +20,7 @@ public class TaskService {
             throw new IllegalArgumentException();
         }
         System.out.print("Введите краткое описание задачи: ");
-        String taskDescription = scanner.next();
+        String taskDescription = scanner1.nextLine();
         System.out.print("\n *** Выберите тип задачи:\n 1 - рабочая (Work)\n 2 - личная (Personal)\n ваш выбор? :");
         Type taskTyp;
 
@@ -70,12 +71,12 @@ public class TaskService {
         System.out.println("Вот что вы навводили:\n" + task9);
     }
 
-    public static void updateDescription(Map<Integer, Task> tasks) {
+    public static void updateDescription() {
         Scanner scannerId = new Scanner(System.in);
         System.out.print("Введите номер (int id) задачи, описание которой нужно изменить: ");
         Integer id = scannerId.nextInt();
         try {
-            checkId(tasks, id);
+            checkId(id);
             Scanner scannerD = new Scanner(System.in);
             System.out.print("Введите новое описание задачи: ");
             String description = scannerD.nextLine();
@@ -98,12 +99,12 @@ public class TaskService {
         } else System.out.println("+++      в нашем архиве нет удаленных задач     +++");
     }
 
-    public static void removeId(Map<Integer, Task> tasks) {
+    public static void removeId() {
         Scanner scannerId = new Scanner(System.in);
         System.out.print("Введите номер (int id) задачи, которую нужно удалить: ");
         Integer id = scannerId.nextInt();
         try {
-            checkId(tasks, id);
+            checkId(id);
             Task task = tasks.get(id);
             archiveRemovedTaskSet.add(task);
             tasks.remove(id);
@@ -114,12 +115,12 @@ public class TaskService {
     }
 
 
-    public static void updateTitle(Map<Integer, Task> tasks) {
+    public static void updateTitle() {
         Scanner scannerId = new Scanner(System.in);
         System.out.print("Введите номер (int id) задачи, титул которой нужно изменить: ");
         Integer id = scannerId.nextInt();
         try {
-            checkId(tasks, id);
+            checkId(id);
             Scanner scannerT = new Scanner(System.in);
             System.out.print("Введите новое название задачи: ");
             String taskName = scannerT.nextLine();
@@ -131,7 +132,7 @@ public class TaskService {
         }
     }
 
-    public static void getAllByDate(Map<Integer, Task> tasks, LocalDate date) {
+    public static void getAllByDate(LocalDate date) {
 //        System.out.println("Задачи на дату " + date);
         int i = 0;
         for (Map.Entry<Integer, Task> task : tasks.entrySet()) {
@@ -157,7 +158,7 @@ public class TaskService {
         return LocalDate.of(y, m, d);
     }
 
-    public static void checkId(Map<Integer, Task> tasks, int id) throws TaskNotFoundException {
+    public static void checkId(int id) throws TaskNotFoundException {
         if (!tasks.containsKey(id)) {
             throw new TaskNotFoundException("*** в нашем списке нет задачи с номером ");
         }
