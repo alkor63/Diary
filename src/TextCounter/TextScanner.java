@@ -52,8 +52,7 @@ public class TextScanner {
 
     public static HashMap<String, Integer> makeWordList(String inputText) {
         Scanner scan = new Scanner(inputText);
-        HashMap<String, Integer> listOfWords = new HashMap<String, Integer>();
-//        Scanner scan = new Scanner(sc);
+        HashMap<String, Integer> listOfWords = new HashMap<>();
         while (scan.hasNext()) {
             String word = scan.next(); //scanner automatically uses " " as a delimiter
             int countWord = 0;
@@ -62,7 +61,8 @@ public class TextScanner {
             } else {
                 countWord = listOfWords.get(word) + 1; //get current count and increment
                 //now put the new value back in the HashMap
-                listOfWords.remove(word); //first remove it (can't have duplicate keys)
+//                listOfWords.remove(word); //first remove it (can't have duplicate keys)
+// т.к. put запишет вместо старого значения
                 listOfWords.put(word, countWord); //now put it back with new value
             }
         }

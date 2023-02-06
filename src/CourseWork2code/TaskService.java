@@ -4,10 +4,10 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class TaskService {
-    static Set<Task> taskSet = new HashSet<>();
+    static Set<Task> archiveRemovedTaskSet = new HashSet<>();
 
     public static void inputTask(Scanner scanner, Map<Integer, Task> tasks) {
-        Scanner scanner1 = new Scanner(System.in);
+//        Scanner scanner1 = new Scanner(System.in);
         Scanner scanner2 = new Scanner(System.in);
 
         System.out.print("Введите название задачи: ");
@@ -19,7 +19,7 @@ public class TaskService {
             throw new IllegalArgumentException();
         }
         System.out.print("Введите краткое описание задачи: ");
-        String taskDescription = scanner1.next();
+        String taskDescription = scanner.next();
         System.out.print("\n *** Выберите тип задачи:\n 1 - рабочая (Work)\n 2 - личная (Personal)\n ваш выбор? :");
         Type taskTyp;
 
@@ -34,7 +34,7 @@ public class TaskService {
                 break;
             default: {
                 System.out.println("ТИП задачи указан невнрно, ты всё сломал !");
-                taskTyp = Type.valueOf("ЛИЧНАЯ");
+                taskTyp = Type.PERSONAL;
             }
         }
 
@@ -87,10 +87,10 @@ public class TaskService {
     }
 
     public static void getRemovedTasks() {
-        if (taskSet.size() > 0) {
-            System.out.println("+++      в нашем архиве " + taskSet.size() + " удаленных задач     +++");
+        if (archiveRemovedTaskSet.size() > 0) {
+            System.out.println("+++      в нашем архиве " + archiveRemovedTaskSet.size() + " удаленных задач     +++");
             System.out.println("   выводим их список через Итератор :");
-            Iterator<Task> iter = taskSet.iterator();
+            Iterator<Task> iter = archiveRemovedTaskSet.iterator();
             while (iter.hasNext()) {
                 Task next = iter.next();
                 System.out.println(next);
@@ -105,7 +105,7 @@ public class TaskService {
         try {
             checkId(tasks, id);
             Task task = tasks.get(id);
-            taskSet.add(task);
+            archiveRemovedTaskSet.add(task);
             tasks.remove(id);
             System.out.println("*** Задача с id= " + id + " удаленна из списка и перемещена в архив");
         } catch (TaskNotFoundException e) {
