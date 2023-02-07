@@ -30,7 +30,7 @@ public class Main {
         try (Scanner scanner = new Scanner(System.in)) {
             label:
             while (true) {
-                printMenu1();
+                printMenu();
                 System.out.print("Выберите пункт меню: ");
                 if (scanner.hasNextInt()) {
                     int menu = scanner.nextInt();
@@ -60,7 +60,8 @@ public class Main {
                             break label;
                     }
                 } else {
-                    scanner.next();
+                    scanner.nextLine();
+                    scanner.nextInt();
                     System.out.println("+++++ Выберите пункт меню из списка (введите ЦИФРУ от 0 до 6) ! +++++");
                 }
             }
@@ -68,9 +69,10 @@ public class Main {
         System.out.println(" *** итоговый список задач ежедневника: ***");
         for (Map.Entry<Integer, Task> tasK : tasks.entrySet())
             System.out.println("id = " + tasK.getKey() + " task = " + tasK.getValue());
+        scanner.close();
     }
 
-    private static void printMenu1() {
+    private static void printMenu() {
         System.out.println("\n1. Добавить задачу\n2. Удалить задачу\n3. Получить задачу на указанный день\n" +
                 "4. Показать архив удаленных задач\n5. Отредактировать титул задачи\n" +
                 "6. Добавить/изменить описание задачи\n0. Выход");

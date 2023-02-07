@@ -6,13 +6,13 @@ import java.util.*;
 public class TaskService {
     static Set<Task> archiveRemovedTaskSet = new HashSet<>();
     public static Map<Integer, Task> tasks = new HashMap<>();
+    public static Scanner scanner = new Scanner(System.in).useDelimiter("\\n");
 
     public static void inputTask() {
-        Scanner scanner1 = new Scanner(System.in);
-        Scanner scanner2 = new Scanner(System.in);
+//        Scanner scanner2 = new Scanner(System.in);
 
         System.out.print("Введите название задачи: ");
-        String taskName = scanner1.nextLine();
+        String taskName = scanner.nextLine();
         try {
             Task.checkTitle(taskName);
         } catch (IncorrectArgumentException e) {
@@ -20,11 +20,11 @@ public class TaskService {
             throw new IllegalArgumentException();
         }
         System.out.print("Введите краткое описание задачи: ");
-        String taskDescription = scanner1.nextLine();
+        String taskDescription = scanner.nextLine();
         System.out.print("\n *** Выберите тип задачи:\n 1 - рабочая (Work)\n 2 - личная (Personal)\n ваш выбор? :");
         Type taskTyp;
 
-        int menu2 = scanner2.nextInt();
+        int menu2 = scanner.nextInt();
 
         switch (menu2) {
             case 1:
@@ -44,7 +44,7 @@ public class TaskService {
                 " 4 - ежемесячная\n 5 - ежегодная\n" +
                 "ваш выбор? :");
         Task task9;
-        int menu = scanner2.nextInt();
+        int menu = scanner.nextInt();
         switch (menu) {
             case 1:
                 task9 = new OneTimeTask(taskName, taskTyp, taskDescription);
@@ -72,14 +72,15 @@ public class TaskService {
     }
 
     public static void updateDescription() {
-        Scanner scannerId = new Scanner(System.in);
+//        Scanner scannerId = new Scanner(System.in);
         System.out.print("Введите номер (int id) задачи, описание которой нужно изменить: ");
-        Integer id = scannerId.nextInt();
+        Integer id = scanner.nextInt();
+        scanner.nextLine();
         try {
             checkId(id);
-            Scanner scannerD = new Scanner(System.in);
+//            Scanner scannerD = new Scanner(System.in);
             System.out.print("Введите новое описание задачи: ");
-            String description = scannerD.nextLine();
+            String description = scanner.nextLine();
             tasks.get(id).setDescription(description);
             System.out.println("*** У задачи с id= " + id + " новое описание: " + tasks.get(id).getDescription());
         } catch (TaskNotFoundException e) {
@@ -100,9 +101,10 @@ public class TaskService {
     }
 
     public static void removeId() {
-        Scanner scannerId = new Scanner(System.in);
+//        Scanner scannerId = new Scanner(System.in);
         System.out.print("Введите номер (int id) задачи, которую нужно удалить: ");
-        Integer id = scannerId.nextInt();
+        Integer id = scanner.nextInt();
+        scanner.nextLine();
         try {
             checkId(id);
             Task task = tasks.get(id);
@@ -116,14 +118,15 @@ public class TaskService {
 
 
     public static void updateTitle() {
-        Scanner scannerId = new Scanner(System.in);
+//        Scanner scannerId = new Scanner(System.in);
         System.out.print("Введите номер (int id) задачи, титул которой нужно изменить: ");
-        Integer id = scannerId.nextInt();
+        Integer id = scanner.nextInt();
+        scanner.nextLine();
         try {
             checkId(id);
-            Scanner scannerT = new Scanner(System.in);
+//            Scanner scannerT = new Scanner(System.in);
             System.out.print("Введите новое название задачи: ");
-            String taskName = scannerT.nextLine();
+            String taskName = scanner.nextLine();
             tasks.get(id).setTitle(taskName);
             System.out.println("*** У задачи с id= " + id + " новый титул: " + tasks.get(id).getTitle());
 
@@ -137,7 +140,11 @@ public class TaskService {
         int i = 0;
         for (Map.Entry<Integer, Task> task : tasks.entrySet()) {
             LocalDate taskDate = task.getValue().getDateTime().toLocalDate();
-            if (taskDate.equals(date) || task.getValue().appearsIn(date, taskDate)) {
+            if (taskDate.equals(date)) {
+                i++;
+                System.out.println(task);
+            }
+            else if (date.isAfter(taskDate) && task.getValue().appearsIn(date, taskDate)){
                 i++;
                 System.out.println(task);
             }
@@ -146,15 +153,16 @@ public class TaskService {
     }
 
     public static LocalDate inputDate() {
-        Scanner scannerD = new Scanner(System.in);
+//        Scanner scannerD = new Scanner(System.in);
         System.out.println("Какая дата вас интересует?");
         System.out.print("Введите день: ");
-        int d = scannerD.nextInt();
+        int d = scanner.nextInt();
         System.out.print("Введите месяц: ");
-        int m = scannerD.nextInt();
+        int m = scanner.nextInt();
         System.out.print("Введите год [гггг]: ");
-        int y = scannerD.nextInt();
+        int y = scanner.nextInt();
         if (y < 100) y += 2000;
+        scanner.nextLine();
         return LocalDate.of(y, m, d);
     }
 
