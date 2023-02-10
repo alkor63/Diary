@@ -6,17 +6,16 @@ import java.util.*;
 public class TaskService {
     static Set<Task> archiveRemovedTaskSet = new HashSet<>();
     public static Map<Integer, Task> tasks = new HashMap<>();
-    public static Scanner scanner = new Scanner(System.in).useDelimiter("\\n");
+    public static Scanner scanner = new Scanner(System.in);
 
     public static void inputTask() {
-//        Scanner scanner2 = new Scanner(System.in);
 
         System.out.print("Введите название задачи: ");
         String taskName = scanner.nextLine();
         try {
             Task.checkTitle(taskName);
         } catch (IncorrectArgumentException e) {
-            System.out.println("title = " + taskName + "\n" + e.getMessage());
+            System.err.println("title = \"" + taskName + "\" недопестимо - " + e.getMessage());
             throw new IllegalArgumentException();
         }
         System.out.print("Введите краткое описание задачи: ");
@@ -25,6 +24,7 @@ public class TaskService {
         Type taskTyp;
 
         int menu2 = scanner.nextInt();
+        scanner.nextLine();
 
         switch (menu2) {
             case 1:
@@ -45,6 +45,8 @@ public class TaskService {
                 "ваш выбор? :");
         Task task9;
         int menu = scanner.nextInt();
+        scanner.nextLine();
+
         switch (menu) {
             case 1:
                 task9 = new OneTimeTask(taskName, taskTyp, taskDescription);
@@ -72,13 +74,11 @@ public class TaskService {
     }
 
     public static void updateDescription() {
-//        Scanner scannerId = new Scanner(System.in);
         System.out.print("Введите номер (int id) задачи, описание которой нужно изменить: ");
         Integer id = scanner.nextInt();
         scanner.nextLine();
         try {
             checkId(id);
-//            Scanner scannerD = new Scanner(System.in);
             System.out.print("Введите новое описание задачи: ");
             String description = scanner.nextLine();
             tasks.get(id).setDescription(description);
@@ -101,7 +101,6 @@ public class TaskService {
     }
 
     public static void removeId() {
-//        Scanner scannerId = new Scanner(System.in);
         System.out.print("Введите номер (int id) задачи, которую нужно удалить: ");
         Integer id = scanner.nextInt();
         scanner.nextLine();
@@ -118,15 +117,19 @@ public class TaskService {
 
 
     public static void updateTitle() {
-//        Scanner scannerId = new Scanner(System.in);
         System.out.print("Введите номер (int id) задачи, титул которой нужно изменить: ");
         Integer id = scanner.nextInt();
         scanner.nextLine();
         try {
             checkId(id);
-//            Scanner scannerT = new Scanner(System.in);
             System.out.print("Введите новое название задачи: ");
             String taskName = scanner.nextLine();
+            try {
+                Task.checkTitle(taskName);
+            } catch (IncorrectArgumentException e) {
+                System.err.println("title = \"" + taskName + "\" недопестимо - " + e.getMessage());
+                throw new IllegalArgumentException();
+            }
             tasks.get(id).setTitle(taskName);
             System.out.println("*** У задачи с id= " + id + " новый титул: " + tasks.get(id).getTitle());
 
@@ -153,7 +156,6 @@ public class TaskService {
     }
 
     public static LocalDate inputDate() {
-//        Scanner scannerD = new Scanner(System.in);
         System.out.println("Какая дата вас интересует?");
         System.out.print("Введите день: ");
         int d = scanner.nextInt();

@@ -80,7 +80,7 @@ public abstract class Task {
 
     protected static void checkTitle(String title) throws IncorrectArgumentException {
         if (nullString(title)) {
-            throw new IncorrectArgumentException("*** У задачи должен быть титул! ***", title);
+            throw new IncorrectArgumentException("*** поле ТИТУЛ должно быть заполнено! ***");
         }
     }
 
