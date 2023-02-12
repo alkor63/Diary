@@ -4,19 +4,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class DailyTask extends Task {
-    //        implements Comparable
-    private final Integer id;
-    private final LocalDateTime dateTime;
 
 //    public DailyTask(String title, Type type, String description, LocalDateTime dateTime) {
 //        super(title, type, description, dateTime);
-//        this.id = idGenerator;
-//        this.dateTime = LocalDateTime.now();
+
 //    }
     public DailyTask(String title, Type type, String description) {
         super(title, type, description);
-        this.id = idGenerator;
-        this.dateTime = LocalDateTime.now();
+
     }
     @Override
     public boolean appearsIn(LocalDate inputDate, LocalDate taskDate) {
@@ -25,8 +20,8 @@ public class DailyTask extends Task {
 
     @Override
     public String toString() {
-        return "Ежедневная задача № " + id +
-                " : " + getTitle() + " (" + getType() + "), время создания = " + dateTime +
+        return "Ежедневная задача № " + getId() +
+                " : " + getTitle() + " (" + getType() + "), время создания = " + getDateTime() +
                 "\n краткое описание: " + getDescription();
     }
 }

@@ -142,7 +142,7 @@ public class TaskService {
 //        System.out.println("Задачи на дату " + date);
         int i = 0;
         for (Map.Entry<Integer, Task> task : tasks.entrySet()) {
-            LocalDate taskDate = task.getValue().getDateTime().toLocalDate();
+            LocalDate taskDate = task.getValue().dateTime.toLocalDate();
             if (taskDate.equals(date)) {
                 i++;
                 System.out.println(task);

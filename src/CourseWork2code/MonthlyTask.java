@@ -4,13 +4,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class MonthlyTask extends Task {
-    private final LocalDateTime dateTime;
-    private final Integer id;
 
     public MonthlyTask(String title, Type type, String description) {
         super(title, type, description);
-        this.id = idGenerator;
-        this.dateTime = LocalDateTime.now();
+
     }
 
     @Override
@@ -21,8 +18,8 @@ public class MonthlyTask extends Task {
 
     @Override
     public String toString() {
-        return "Ежемесячная задача № " + id +
-                " : " + getTitle() + " (" + getType() + "), время создания = " + dateTime +
+        return "Ежемесячная задача № " + getId() +
+                " : " + getTitle() + " (" + getType() + "), время создания = " + getDateTime() +
                 "\n краткое описание: " + getDescription();
     }
 }
