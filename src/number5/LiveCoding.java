@@ -24,10 +24,8 @@ public class LiveCoding {
     }
 
     public static double square(double x) {
-        double y;
-        y = x * x;
-        return y;
-    } // вычислдили квадрат аргумента
+        return x * x;
+    } // вычислили квадрат аргумента
 
     public static void checkPositive(double d) throws IllegalArgumentException {
         if (d < 0.0) {

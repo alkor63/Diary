@@ -6,9 +6,11 @@ import java.util.Map;
 import java.util.Scanner;
 
 import static CourseWork2code.TaskService.*;
-
+// Приложение ЕЖЕДНЕВНИК
 public class Main {
     public static void main(String[] args) {
+
+// Для удобства тестирования работы приложения создаем несколько задач разной повторяемости
         OneTimeTask task1 = new OneTimeTask("Task #1 oneTime", Type.WORK, null);
         OneTimeTask task2 = new OneTimeTask("Task #2 oneTime", Type.PERSONAL, "Barbershop");
         OneTimeTask task3 = new OneTimeTask("Task #3 oneTime", Type.WORK, " ");

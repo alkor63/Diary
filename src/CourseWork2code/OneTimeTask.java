@@ -2,7 +2,7 @@ package CourseWork2code;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+// Одноразовая задача
 public class OneTimeTask extends Task {
 
     public OneTimeTask(String title, Type type, String description) {

@@ -5,10 +5,7 @@ import java.time.LocalDateTime;
 
 public class DailyTask extends Task {
 
-//    public DailyTask(String title, Type type, String description, LocalDateTime dateTime) {
-//        super(title, type, description, dateTime);
-
-//    }
+// Ежедневные задачи
     public DailyTask(String title, Type type, String description) {
         super(title, type, description);
 

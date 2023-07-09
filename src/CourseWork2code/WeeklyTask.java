@@ -2,7 +2,7 @@ package CourseWork2code;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+// Еженедельная задача
 public class WeeklyTask extends Task {
 
     public WeeklyTask(String title, Type type, String description) {

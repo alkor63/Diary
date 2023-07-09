@@ -2,7 +2,7 @@ package CourseWork2code;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+// Ежегодная задача
 public class YearlyTask extends Task {
 
     public YearlyTask(String title, Type type, String description) {
@@ -11,9 +11,7 @@ public class YearlyTask extends Task {
 
     @Override
     public boolean appearsIn(LocalDate inputDate, LocalDate taskDate) {
-        if (inputDate.getMonth() == taskDate.getMonth() && inputDate.getDayOfMonth() == taskDate.getDayOfMonth())
-            return true;
-        else return false;
+        return inputDate.getMonth() == taskDate.getMonth() && inputDate.getDayOfMonth() == taskDate.getDayOfMonth();
     }
 
     @Override

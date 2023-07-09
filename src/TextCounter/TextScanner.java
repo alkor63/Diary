@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
-
+// Задача приложения найти и вывести ТОП-10 уникальных слов в тексте
 public class TextScanner {
     public static void main(String[] args) {
         String inputTextWithChar = null;

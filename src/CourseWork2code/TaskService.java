@@ -9,7 +9,7 @@ public class TaskService {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void inputTask() {
-
+// Создаём новую запись (задачу) в ежедневнике
         System.out.print("Введите название задачи: ");
         String taskName = scanner.nextLine();
         try {
@@ -74,6 +74,7 @@ public class TaskService {
     }
 
     public static void updateDescription() {
+// метод для редактирования описания задачи
         System.out.print("Введите номер (int id) задачи, описание которой нужно изменить: ");
         Integer id = scanner.nextInt();
         scanner.nextLine();
@@ -89,6 +90,7 @@ public class TaskService {
     }
 
     public static void getRemovedTasks() {
+// метод показывает архив удаленных задач
         if (archiveRemovedTaskSet.size() > 0) {
             System.out.println("+++      в нашем архиве " + archiveRemovedTaskSet.size() + " удаленных задач     +++");
             System.out.println("   выводим их список через Итератор :");
@@ -101,6 +103,7 @@ public class TaskService {
     }
 
     public static void removeId() {
+// метод для удаления задачи по id
         System.out.print("Введите номер (int id) задачи, которую нужно удалить: ");
         Integer id = scanner.nextInt();
         scanner.nextLine();
@@ -117,6 +120,8 @@ public class TaskService {
 
 
     public static void updateTitle() {
+// метод для редактирования титула задачи (по id)
+
         System.out.print("Введите номер (int id) задачи, титул которой нужно изменить: ");
         Integer id = scanner.nextInt();
         scanner.nextLine();
@@ -139,6 +144,7 @@ public class TaskService {
     }
 
     public static void getAllByDate(LocalDate date) {
+// метод показывает все задачи на заданную дату
 //        System.out.println("Задачи на дату " + date);
         int i = 0;
         for (Map.Entry<Integer, Task> task : tasks.entrySet()) {

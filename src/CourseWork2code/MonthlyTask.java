@@ -2,7 +2,7 @@ package CourseWork2code;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+// Ежемесячные задачи
 public class MonthlyTask extends Task {
 
     public MonthlyTask(String title, Type type, String description) {
